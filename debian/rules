@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@
+TMP=$(CURDIR)/debian/tmp/
+TMPD=$(CURDIR)/debian/tmp-debug/
+prefix=/usr
+ARCH = $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+ARCH_OS = $(shell dpkg-architecture -qDEB_BUILD_ARCH_OS)
+NCPU = $(shell grep -c processor /proc/cpuinfo)
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+DEB_SOURCE_PACKAGE ?= $(strip $(shell egrep '^Source: ' debian/control | cut -f 2 -d ':'))
+DEB_VERSION ?= $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
+DEB_NOEPOCH_VERSION ?= $(shell echo $(DEB_VERSION) | cut -d: -f2-)
+DEB_UPSTREAM_VERSION ?= $(shell echo $(DEB_NOEPOCH_VERSION) | sed 's/-[^-]*$$//')
+DEB_UPSTREAM_VERSION_MAJOR_MINOR := $(shell echo $(DEB_UPSTREAM_VERSION) | sed -r -n 's/^([0-9]+\.[0-9]+).*/\1/p')
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+DISTRIBUTION = $(shell lsb_release -i -s)
+DISTRELEASE = $(shell lsb_release -c -s)
+
+patchelfdir = patchelf
+
+override_dh_auto_configure:
+	@echo "RULES.$@"
+	./bootstrap.sh
+	./configure
+	make
+	touch $@
+
+override_dh_auto_build:
+	@echo "RULES.$@"
+	./bootstrap.sh
+	./configure
+	make
+	touch $@
+
+override_dh_auto_install:
+	@echo "RULES.$@"
+	make DESTDIR="$(TMP)" install
+
+
+override_dh_auto_clean:
+	[ ! -f Makefile ] || $(MAKE) maintainer-clean
+	rm -rf build-aux
+	find . -name Makefile.in -delete
+	rm -f configure
+	rm -f aclocal.m4
