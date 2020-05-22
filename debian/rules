@@ -25,7 +25,7 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 DISTRIBUTION = $(shell lsb_release -i -s)
 DISTRELEASE = $(shell lsb_release -c -s)
 
-patchelfdir = patchelf
+patchelfdir = patchelf-$(VERSION)
 
 override_dh_auto_configure:
 	@echo "RULES.$@"
@@ -44,7 +44,6 @@ override_dh_auto_build:
 override_dh_auto_install:
 	@echo "RULES.$@"
 	make DESTDIR="$(TMP)" install
-
 
 override_dh_auto_clean:
 	[ ! -f Makefile ] || $(MAKE) maintainer-clean

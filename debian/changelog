@@ -1,0 +1,5 @@
+patchelf (0.10-1) experimental; urgency=low
+
+  * Packaging for 0.10
+
+ -- Illia Pshonkin <illia.pshonkin@percona.com>  Mon, 25 May 2020 10:57:32 +0300

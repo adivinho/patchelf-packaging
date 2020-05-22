@@ -4,9 +4,9 @@ Priority: optional
 Maintainer: Felipe Sateler <fsateler@debian.org>
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.7
-Homepage: http://nixos.org/patchelf.html
-Vcs-Git: git://anonscm.debian.org/collab-maint/patchelf.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/patchelf.git;a=summary
+Homepage: https://nixos.org/patchelf.html
+Vcs-Git: https://salsa.debian.org/debian/patchelf.git
+Vcs-Browser: https://salsa.debian.org/debian/patchelf
 
 Package: patchelf
 Architecture: any
@@ -19,4 +19,3 @@ Description: modify properties of ELF executables
   * Change the RPATH of executables and libraries
   * Remove declared dependencies on dynamic libraries
     (DT_NEEDED entries)
-

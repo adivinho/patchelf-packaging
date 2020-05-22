@@ -40,3 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/patchelf
 %doc %{_docdir}/patchelf/README
 %{_mandir}/man1/patchelf.1.gz
+
+%changelog
+* Wed May 27 2020 Illia Pshonkin <illia.pshonkin@percona.com>
+- Packaging for 0.10
