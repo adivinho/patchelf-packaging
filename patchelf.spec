@@ -40,7 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %{_bindir}/patchelf
-%doc %{_docdir}/patchelf/README
+%doc %{_docdir}/patchelf/README.md
 %{_mandir}/man1/patchelf.1.gz
 
 %changelog
