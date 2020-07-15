@@ -169,10 +169,10 @@ get_system(){
 enable_venv(){
     if [ "$OS" == "rpm" ]; then
         if [ "${RHEL}" -eq 7 ]; then
-            source /opt/rh/devtoolset-7/enable
+            source /opt/rh/devtoolset-8/enable
             export CMAKE_BIN="cmake3"
         elif [ "${RHEL}" -eq 6 ]; then
-            source /opt/rh/devtoolset-7/enable
+            source /opt/rh/devtoolset-8/enable
         fi
     fi
 }
@@ -211,7 +211,7 @@ install_deps() {
                 sleep 1
                 echo "waiting"
             done
-            PKGLIST+=" devtoolset-7-gcc-c++ devtoolset-7-binutils"
+            PKGLIST+=" devtoolset-8-gcc-c++ devtoolset-8-binutils"
             PKGLIST+=" make gcc gcc-c++ libev-devel rpm-build autoconf automake rpmlint"
             until yum -y install ${PKGLIST}; do
                 echo "waiting"
@@ -303,7 +303,6 @@ build_srpm(){
     cd $WORKDIR
     #
     cd $WORKDIR/rpmbuild/SOURCES
-    tar vxzf ${WORKDIR}/${TARFILE} --wildcards "patchelf-$VERSION/debian/patches/*.patch" --strip=3
     mv -fv $WORKDIR/$TARFILE $WORKDIR/rpmbuild/SOURCES
     cd $WORKDIR
     #
