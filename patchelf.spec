@@ -7,7 +7,6 @@ License: GPL
 Group: Development/Tools
 URL: http://nixos.org/patchelf.html
 Source0: %{name}-%{version}.tar.gz
-Patch0: adjust_startPage_issue127_commit1cc234fea.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Prefix: /usr
 
@@ -19,7 +18,6 @@ executables and change the RPATH of executables and libraries.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %if 0%{?rhel} == 6
