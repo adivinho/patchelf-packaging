@@ -3,6 +3,7 @@ Summary: A utility for patching ELF binaries
 Name: patchelf
 Version: @PACKAGE_VERSION@
 Release: @RPM_RELEASE@
+Epoch: 1
 License: GPL
 Group: Development/Tools
 URL: http://nixos.org/patchelf.html
