@@ -446,7 +446,7 @@ build_deb(){
     dpkg-source -x $DSC
     cd $DIRNAME
     sed -i "s: serial-tests::g" configure.ac
-    dch -m -D "$OS_NAME" --force-distribution -v "$VERSION-$DEB_RELEASE.$OS_NAME" 'Update distribution'
+    dch -m -D "$OS_NAME" --force-distribution -v "1:$VERSION-$DEB_RELEASE.$OS_NAME" 'Update distribution'
     dpkg-buildpackage -rfakeroot -uc -us -b
 
     cd ${WORKDIR}

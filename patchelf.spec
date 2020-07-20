@@ -2,7 +2,7 @@ Summary: A utility for patching ELF binaries
 
 Name: patchelf
 Version: @PACKAGE_VERSION@
-Release: @RPM_RELEASE@
+Release: @RPM_RELEASE@%{?dist}
 Epoch: 1
 License: GPL
 Group: Development/Tools
