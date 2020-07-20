@@ -49,7 +49,6 @@ append_arg_to_args () {
             --get_sources=*) SOURCE="$val" ;;
             --branch=*) BRANCH="$val" ;;
             --install_deps=*) INSTALL="$val" ;;
-            --branch=*) BRANCH="$val" ;;
             --repo=*) REPO="$val" ;;
             --rpm_release=*) RPM_RELEASE="$val" ;;
             --deb_release=*) DEB_RELEASE="$val" ;;
@@ -106,10 +105,10 @@ get_sources(){
     git reset --hard
     #
 
-    echo "VERSION=${VERSION}" > ${CURDIR}/patchelf.properties
     PRODUCT=patchelf
+    VERSION="$(cat version)"
     BRANCH_NAME="${BRANCH}"
-    PRODUCT_FULL=${PRODUCT}-${VERSION}
+    PRODUCT_FULL="${PRODUCT}"-"${VERSION}"
 
     echo "REVISION=${REVISION}" >> ${CURDIR}/patchelf.properties
     echo "RPM_RELEASE=${RPM_RELEASE}" >> ${CURDIR}/patchelf.properties
@@ -120,6 +119,7 @@ get_sources(){
     echo "PRODUCT_FULL=${PRODUCT_FULL}" >> ${CURDIR}/patchelf.properties
     echo "BUILD_NUMBER=${BUILD_NUMBER}" >> ${CURDIR}/patchelf.properties
     echo "BUILD_ID=${BUILD_ID}" >> ${CURDIR}/patchelf.properties
+    echo "VERSION=${VERSION}" > ${CURDIR}/patchelf.properties
     #
     if [ -z "${DESTINATION}" ]; then
     export DESTINATION=experimental
