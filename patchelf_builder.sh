@@ -136,7 +136,7 @@ get_sources(){
     cp -ap ${WORKDIR}/patchelf-packaging/debian ${PRODUCT}/
 
     sed -i "s:@PACKAGE_VERSION@:${VERSION}:g" ${PRODUCT}/patchelf.spec
-
+    sed -i "s:@RPM_RELEASE@:${RPM_RELEASE}:g" ${PRODUCT}/patchelf.spec
 
     cd ${WORKDIR}
     mv ${PRODUCT} ${PRODUCT_FULL}
@@ -398,7 +398,7 @@ build_source_deb(){
     tar xzf ${NEWTAR}
     cd $NAME-$VERSION
 
-    dch -D unstable --force-distribution -v "${VERSION}-${DEB_RELEASE}" "Update to new upstream release patchelf ${VERSION}-${DEB_RELEASE}"
+    dch -D unstable --force-distribution -v "1:${VERSION}-${DEB_RELEASE}" "Update to new upstream release patchelf ${VERSION}-${DEB_RELEASE}"
     dpkg-buildpackage -S
 
     cd ${WORKDIR}
