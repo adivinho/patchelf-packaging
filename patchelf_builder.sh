@@ -398,7 +398,7 @@ build_source_deb(){
     tar xzf ${NEWTAR}
     cd $NAME-$VERSION
 
-    dch -D unstable --force-distribution -v "${VERSION}-${DEB_RELEASE}" "Update to new upstream release patchelf ${VERSION}-${DEB_RELEASE}"
+    dch -D unstable --force-distribution -v "1:${VERSION}-${DEB_RELEASE}" "Update to new upstream release patchelf ${VERSION}-${DEB_RELEASE}"
     dpkg-buildpackage -S
 
     cd ${WORKDIR}
