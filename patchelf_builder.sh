@@ -303,6 +303,7 @@ build_srpm(){
     cd $WORKDIR
     #
     cd $WORKDIR/rpmbuild/SOURCES
+    tar vxzf ${WORKDIR}/${TARFILE} --wildcards "patchelf-$VERSION/debian/patches/*.patch" --strip=3
     mv -fv $WORKDIR/$TARFILE $WORKDIR/rpmbuild/SOURCES
     cd $WORKDIR
     #
