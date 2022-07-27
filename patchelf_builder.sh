@@ -222,6 +222,7 @@ install_deps() {
             done
         fi
     else
+        cat /etc/apt/sources.list
         apt-get update
         DEBIAN_FRONTEND=noninteractive apt-get -y install lsb-release gnupg git wget
 
@@ -229,7 +230,7 @@ install_deps() {
         PKGLIST+=" build-essential rsync"
 
         until DEBIAN_FRONTEND=noninteractive apt-get -y install ${PKGLIST}; do
-            sleep 1
+            sleep 5
             echo "waiting"
         done
 
