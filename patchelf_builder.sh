@@ -223,7 +223,7 @@ install_deps() {
         fi
     else
         cat /etc/apt/sources.list
-        apt update
+        apt update --allow-releaseinfo-change
         apt-get update
         DEBIAN_FRONTEND=noninteractive apt-get -y install lsb-release gnupg git wget
 
