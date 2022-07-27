@@ -8,8 +8,6 @@ License: GPL
 Group: Development/Tools
 URL: http://nixos.org/patchelf.html
 Source0: %{name}-%{version}.tar.gz
-Patch0: increase_size_to_work_with_debug_binaries.patch
-Patch1: mark_phdrs_synced_with_sections.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Prefix: /usr
 
