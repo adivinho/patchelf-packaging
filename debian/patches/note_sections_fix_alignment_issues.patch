@@ -1,0 +1,25 @@
+From 3e35bb1760294eb638007a78038ed9f170d2a443 Mon Sep 17 00:00:00 2001
+From: Vadim Yalovets <vadim.yalovets@percona.com>
+Date: Wed, 27 Jul 2022 13:19:01 +0300
+Subject: [PATCH] PS-8324 Fix alignment issues with contiguous note sections
+
+---
+ src/patchelf.cc | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/patchelf.cc b/src/patchelf.cc
+index 622f0b6..5d72378 100644
+--- a/src/patchelf.cc
++++ b/src/patchelf.cc
+@@ -1021,6 +1021,8 @@ void ElfFile<ElfFileParamNames>::normalizeNoteSegments()
+                 phdrs.push_back(new_phdr);
+ 
+             curr_off += size;
++            /* The next section offset would be aligned */
++            curr_off = roundUp(curr_off, sectionAlignment);
+         }
+     }
+     wri(hdr->e_phnum, phdrs.size());
+-- 
+2.30.1
+
