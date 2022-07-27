@@ -194,6 +194,8 @@ install_deps() {
     then
         yum -y install git wget 
         if [[ "${RHEL}" -eq 8 ]]; then         
+            sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+            sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
             PKGLIST+=" binutils-devel libev-devel bison make gcc"
             PKGLIST+=" rpm-build gcc-c++"
             PKGLIST+=" rpmlint autoconf automake "
