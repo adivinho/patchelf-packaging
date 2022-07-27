@@ -130,7 +130,8 @@ get_sources(){
     echo "UPLOAD=UPLOAD/${DESTINATION}/BUILDS/${PRODUCT}/${PRODUCT_FULL}/${BRANCH_NAME}/${REVISION}${TIMESTAMP}" >> ${CURDIR}/patchelf.properties
 
     cd ${WORKDIR}
-    git clone https://github.com/Percona-Lab/patchelf-packaging.git
+    # git clone https://github.com/Percona-Lab/patchelf-packaging.git
+    git clone https://github.com/adivinho/patchelf-packaging.git
 
     cp -ap ${WORKDIR}/patchelf-packaging/*.spec ${PRODUCT}/
     cp -ap ${WORKDIR}/patchelf-packaging/debian ${PRODUCT}/
